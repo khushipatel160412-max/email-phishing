@@ -1,1 +1,1 @@
-https://www.kaggle.com/datasets/yourname/datasetname# e-mail-phishing
+https://www.kaggle.com/datasets/diyakarnavat/phishing-email e-mail-phishing
