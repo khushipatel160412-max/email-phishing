@@ -6,6 +6,8 @@ import pandas as pd
 import numpy as np
 import pickle
 import altair as alt
+import pillow
+import openpyxl
 
 # ===============================
 # PAGE CONFIG
