@@ -7,7 +7,7 @@ import numpy as np
 import pickle
 import altair as alt
 import openpyxl
-import pillow
+from PIL import Image
 
 # ===============================
 # PAGE CONFIG
@@ -19,9 +19,13 @@ st.set_page_config(page_title="AI Email Phishing Detector", layout="wide")
 # ===============================
 @st.cache_resource
 def load_model():
-    model = pickle.load(open("phishing_model.pkl","rb"))
-    vectorizer = pickle.load(open("vectorizer.pkl","rb"))
-    return model, vectorizer
+    try:
+        model = pickle.load(open("phishing_model.pkl","rb"))
+        vectorizer = pickle.load(open("vectorizer.pkl","rb"))
+        return model, vectorizer
+    except:
+        st.error("Model files not found. Please upload phishing_model.pkl and vectorizer.pkl")
+        return None, None
 
 model, vectorizer = load_model()
 
@@ -93,7 +97,6 @@ elif page == "Live Detection":
             st.warning("Please enter email text")
 
         else:
-
             email_vector = vectorizer.transform([email_text])
 
             prediction = model.predict(email_vector)[0]
@@ -192,11 +195,11 @@ This project uses machine learning to detect phishing emails.
 
 Project Steps:
 
-1 Data Collection  
-2 Data Cleaning  
-3 TF-IDF Feature Extraction  
-4 Model Training  
-5 Email Classification  
+1. Data Collection  
+2. Data Cleaning  
+3. TF-IDF Feature Extraction  
+4. Model Training  
+5. Email Classification  
 
 The model predicts whether an email is phishing or legitimate.
 """)
