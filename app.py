@@ -63,9 +63,8 @@ st.markdown("""
 def load_assets():
     # Use relative paths that work on both local and Streamlit Cloud
     base_path = os.path.dirname(__file__)
-    model_path = os.path.join(base_path, "model", "phishing_model.pkl")
-    vect_path = os.path.join(base_path, "model", "vectorizer.pkl")
-    
+    model_path = os.path.join(base_path, "phishing_model.pkl")
+vect_path  = os.path.join(base_path, "vectorizer.pkl")
     try:
         with open(model_path, "rb") as f:
             model = pickle.load(f)
