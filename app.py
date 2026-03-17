@@ -15,10 +15,15 @@ st.set_page_config(page_title="AI Email Phishing Detector", layout="wide")
 # ===============================
 # LOAD MODEL
 # ===============================
+
 @st.cache_resource
 def load_model():
-    model = pickle.load(open("phishing_model.pkl","rb"))
-    vectorizer = pickle.load(open("vectorizer.pkl","rb"))
+    with open("phishing_model.pkl", "rb") as f:
+        model = pickle.load(f)
+
+    with open("vectorizer.pkl", "rb") as f:
+        vectorizer = pickle.load(f)
+
     return model, vectorizer
 
 model, vectorizer = load_model()
