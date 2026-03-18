@@ -61,10 +61,9 @@ st.markdown("""
 # ===============================
 @st.cache_resource
 def load_assets():
-    # Use relative paths that work on both local and Streamlit Cloud
     base_path = os.path.dirname(__file__)
     model_path = os.path.join(base_path, "phishing_model.pkl")
-vect_path  = os.path.join(base_path, "vectorizer.pkl")
+    vect_path  = os.path.join(base_path, "vectorizer.pkl")
     try:
         with open(model_path, "rb") as f:
             model = pickle.load(f)
@@ -72,7 +71,7 @@ vect_path  = os.path.join(base_path, "vectorizer.pkl")
             vectorizer = pickle.load(f)
         return model, vectorizer
     except FileNotFoundError:
-        st.error("🚨 Model assets missing! Please ensure 'model/' folder contains .pkl files.")
+        st.error("🚨 Model assets missing!")
         return None, None
 
 model, vectorizer = load_assets()
